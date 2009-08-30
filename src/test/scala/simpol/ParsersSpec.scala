@@ -14,10 +14,16 @@ object ParsersSpec extends Specification with Parsers {
       }
     }
   "parse this sum correctly" in {
-      parseAll(sum, "3*x*y+5*z*q") match {
-        case Success(out, int) => out.toString mustEqual "3*(x^1)*(y^1)+5*(z^1)*(q^1)"
-        case ns: NoSuccess     => assert(false, ns.toString)
-      }
+     parseAll(sum, "3*x*y+5*z*q") match {
+       case Success(out, int) => out.toString mustEqual "3*(x^1)*(y^1)+5*(z^1)*(q^1)"
+       case ns: NoSuccess     => assert(false, ns.toString)
+     }
+    }
+  "parse this sum correctly" in {
+     parseAll(sum, "x-y") match {
+       case Success(out, int) => out.toString mustEqual "1*(x^1)+-1*(y^1)"
+       case ns: NoSuccess     => assert(false, ns.toString)
+     }
     }
   }
 

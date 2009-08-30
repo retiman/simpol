@@ -7,8 +7,7 @@ Using Scala's parser combinators makes parsing super easy.  I'm too lazy to prod
 [code]
 trait Parsers extends RegexParsers {
   def sum: Parser[Polynomial] = (
-      term ~ rep("+" ~ sum)
-    | term ~ rep("-" ~ sum)
+      term ~ rep(("+" | "-") ~ sum)
     | term
   )
  
