@@ -1,6 +1,7 @@
 #!/bin/bash
-if [ -e target/simpol-*-jar-with-dependencies.jar ]; then
-  java -jar target/simpol-*-jar-with-dependencies.jar
+F=target/simpol-*-jar-with-dependencies.jar
+if [ -e $F ]; then
+  java -jar $F $*
 else
-  scala simpol.Main
+  scala simpol.Main $*
 fi
