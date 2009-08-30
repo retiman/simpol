@@ -1,2 +1,37 @@
 DESCRIPTION
 A very simple, very stupid polynomial expression simplifier.  Takes a polynomial and represents it as a sum of products.  Products must be delimited by `*` and sums must be delimited by `+`; the unary negation operator is `_`.  All coefficients must be positive integers.
+
+PARSING
+Using Scala's parser combinators makes parsing super easy.  I'm too lazy to produce a grammar for valid polynomial expressions, but here's the parser class, which looks almost like BNF:
+
+[code]
+trait Parsers extends RegexParsers {
+  def sum: Parser[Polynomial] = (
+      term ~ rep("+" ~ sum)
+    | term ~ rep("-" ~ sum)
+    | term
+  )
+ 
+  def term: Parser[Polynomial] = (
+      unary ~ rep("*" ~ term)
+    | unary
+  )
+ 
+  def unary: Parser[Polynomial] = (
+      "_" ~> primary
+    | primary
+  )
+ 
+  def primary: Parser[Polynomial] = (
+      variable ~ "^" ~ constant
+    | variable
+    | constant
+    | "(" ~> sum <~ ")"
+  )
+ 
+  def variable = """[a-z]""".r
+  def constant = """\d+""".r
+}
+[/code]
+
+You'll be able to figure it out.
