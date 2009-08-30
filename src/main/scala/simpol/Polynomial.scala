@@ -17,8 +17,6 @@ case class Polynomial(terms: Set[Term]) {
     px
   }
 
-  def -(that: Polynomial): Polynomial = this + (NEG_ONE * that)
-
   def *(that: Polynomial): Polynomial = if (isZero || that.isZero) Polynomial(Set()) else {
     var ts = Set[Term]()
     for (a <- terms; b <- that.terms)
