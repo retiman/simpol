@@ -2,6 +2,7 @@ package simpol
 
 import org.specs.runner.JUnit4
 import org.specs.Specification
+import Polynomial._
 
 class PolynomialSpecTest extends JUnit4(PolynomialSpec)
 
@@ -24,6 +25,8 @@ object PolynomialSpec extends Specification {
     "add correctly" in { Polynomial(Set()) + p1 mustEqual p1 }
     "add correctly" in { p1 + p2 mustEqual Polynomial(Set(t5, t3, t4)) }
     "simplify correctly" in { Polynomial(Set(t1, t2)).simplify mustEqual Polynomial(Set(t5)) }
+    "simplify correctly" in { Polynomial(Set(Term(0, Map()))).simplify mustEqual Polynomial(Set(Term(0, Map('x -> 1)))).simplify }
+    "simplify correctly" in { (ZERO + ZERO).simplify mustEqual ZERO }
     "print correctly" in { Polynomial(Set(t1, t3)).toString mustEqual "3*(x^1)*(y^2)+9*(x^2)*(z^3)" }
   }
 

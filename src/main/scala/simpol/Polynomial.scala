@@ -26,10 +26,13 @@ case class Polynomial(terms: Set[Term]) {
 
   def simplify = {
     val px = Polynomial(Set()) + Polynomial(terms.map(_.simplify))
-    Polynomial(px.terms.map(_.simplify))
+    Polynomial(px.terms.filter(!_.isZero).map(_.simplify))
   }
 
-  override def toString = terms.map(_.toString).mkString("+")
+  override def toString = terms.size match {
+    case 0 => 0.toString
+    case _ => terms.map(_.toString).mkString("+")
+  }
 
   private def isZero = terms.isEmpty || (terms.size == 1 && terms.elements.next.isZero)
 
@@ -43,7 +46,6 @@ case class Polynomial(terms: Set[Term]) {
 
 case class Term(c: Int, vars: Map[Variable, Exponent]) {
   def +(that: Term) = Term(c + that.c, vars)
-
 
   def *(that: Term) = {
     var vs = vars
