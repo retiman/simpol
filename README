@@ -1,0 +1,2 @@
+DESCRIPTION
+A very simple, very stupid polynomial expression simplifier.  Takes a polynomial and represents it as a sum of products.  Products must be delimited by `*` and sums must be delimited by `+`; the unary negation operator is `_`.  All coefficients must be positive integers.
