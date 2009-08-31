@@ -6,7 +6,7 @@
   <artifactId>simpol</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>Simple Polynomial Expression Simplifier</name>
+  <name>Polynomial Expression Simplifier</name>
   
   <repositories>
     <repository>
@@ -23,6 +23,23 @@
       <url>http://scala-tools.org/repo-releases</url>
     </pluginRepository>
   </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.lousycoder.com</id>
+      <name>LousyCoder Maven Repository</name>
+      <url>ftp://lousycoder.com</url>
+      <layout>default</layout>
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>maven.lousycoder.com</id>
+      <name>LousyCoder Maven Repository</name>
+      <url>ftp://lousycoder.com</url>
+      <layout>default</layout>
+    </snapshotRepository>
+  </distributionManagement>
   
   <dependencies>
     <dependency>
@@ -96,6 +113,13 @@
         </configuration>
       </plugin>
     </plugins>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ftp</artifactId>
+        <version>1.0-alpha-3</version>
+      </extension>
+    </extensions>
   </build>
   
 </project>
