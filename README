@@ -1,7 +1,19 @@
 DESCRIPTION
-A very simple, very stupid polynomial expression simplifier.  Takes a polynomial and represents it as a sum of products.  Products must be delimited by `*` and sums must be delimited by `+`; the unary negation operator is `_`.  All coefficients must be positive integers.
+A very simple, very stupid polynomial expression simplifier.  Takes a polynomial and represents it as a sum of products; this is what is meant by simplification.  Powers will be expanded, so it may be the case that the "simplified" expression is more complication.
 
-PARSING
+RESTRICTIONS
+  - No spaces are allowed in the expression.
+  - Terms must be delimited by a `*`.
+    e.g. 3*x*y is a valid expression, but 3xy is not.
+  - Sums must be delimited by a `+`, obviously.
+  - Coefficients to products must appear first in the term.
+    e.g. 3*x*y is a valid expression, but x*y*3 is not.
+  - Parentheses are required when raising a sum to a power.
+    e.g. (x+y+z)^2
+  - The binary subtraction operator is `-`; the unary negation operator is `_`.
+    e.g. x-(_y) is a valid expression, but x-(-y) is not.
+
+GRAMMAR
 Using Scala's parser combinators makes parsing super easy.  I'm too lazy to produce a grammar for valid polynomial expressions, but here's the parser class, which looks almost like BNF:
 
 [code]
@@ -25,6 +37,7 @@ trait Parsers extends RegexParsers {
       variable ~ "^" ~ constant
     | variable
     | constant
+    | "(" ~> sum ~ ")^" ~ constant
     | "(" ~> sum <~ ")"
   )
  
