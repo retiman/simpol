@@ -26,9 +26,13 @@ case class Term(c: Int, factors: Map[Symbol, Int]) {
     case _ => Term(c, factors.filter(_._2 != 0))
   }
 
-  override def toString = factors.size match {
-    case 0 => c.toString
-    case _ => c + "*" + factors.map(entry => "(" + entry._1.toString.replace("'", "") + "^" + entry._2 + ")")
-                                        .mkString("*")
+  override def toString = {
+    implicit def pairWrapper(factor: Pair[Symbol, Int]) = new {
+      def format = "(" + factor._1.toString.replace("'", "") + "^" + factor._2 + ")"
+    }
+    factors.size match {
+      case 0 => c.toString
+      case _ => c + "*" + factors.map(_.format).mkString("*")
+    }
   }
 }
