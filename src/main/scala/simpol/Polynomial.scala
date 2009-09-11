@@ -37,35 +37,35 @@ case class Polynomial(terms: Set[Term]) {
   private def isZero = terms.isEmpty || (terms.size == 1 && terms.elements.next.isZero)
 
   private def +(term: Term): Polynomial = {
-    if (terms.filter(_.vars == term.vars).isEmpty)
+    if (terms.filter(_.factors == term.factors).isEmpty)
       Polynomial(terms + term)
     else
-      Polynomial(terms.map(t => if (t.vars == term.vars) t + term else t))
+      Polynomial(terms.map(t => if (t.factors == term.factors) t + term else t))
   }
 }
 
-case class Term(c: Int, vars: Map[Variable, Exponent]) {
-  def +(that: Term) = Term(c + that.c, vars)
+case class Term(c: Int, factors: Map[Variable, Exponent]) {
+  def +(that: Term) = Term(c + that.c, factors)
 
   def *(that: Term) = {
-    var vs = vars
-    (vars.keySet ++ that.vars.keySet).foreach { name =>
-      val e = vars.getOrElse(name, 0) + that.vars.getOrElse(name, 0)
-      vs += name -> e
+    var fs = factors
+    (factors.keySet ++ that.factors.keySet).foreach { name =>
+      val e = factors.getOrElse(name, 0) + that.factors.getOrElse(name, 0)
+      fs += name -> e
     }
-    Term(c * that.c, vs)
+    Term(c * that.c, fs)
   }
 
   def isZero = c == 0
 
   def simplify = c match {
     case 0 => Term(0, Map())
-    case _ => Term(c, vars.filter(_._2 != 0))
+    case _ => Term(c, factors.filter(_._2 != 0))
   }
 
-  override def toString = vars.size match {
+  override def toString = factors.size match {
     case 0 => c.toString
-    case _ => c + "*" + vars.map(entry => "(" + entry._1.toString.replace("'", "") + "^" + entry._2 + ")")
+    case _ => c + "*" + factors.map(entry => "(" + entry._1.toString.replace("'", "") + "^" + entry._2 + ")")
                                         .mkString("*")
   }
 }

@@ -2,6 +2,7 @@ package simpol
 
 import org.specs.runner.JUnit4
 import org.specs.Specification
+import Polynomial._
 
 class ParsersSpecTest extends JUnit4(ParsersSpec)
 
