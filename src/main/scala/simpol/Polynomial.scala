@@ -4,9 +4,7 @@ import Polynomial._
 import Term._
 
 object Polynomial {
-  val ONE = Polynomial(1)
-  val NEG_ONE = Polynomial(-1)
-  val ZERO = Polynomial(0)
+  implicit def intWrapper(c: Int) = Polynomial(c)
 
   def apply(c: Int) = new Polynomial(Set(Term(c)))
   def apply(factor: Pair[Symbol, Int]) = new Polynomial(Set(Term(factor)))

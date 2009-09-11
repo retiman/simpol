@@ -16,7 +16,7 @@ trait Parsers extends RegexParsers {
   )
 
   def unary: Parser[Polynomial] = (
-      "_" ~> primary                 ^^ { case p => NEG_ONE * p }
+      "_" ~> primary                 ^^ { case p => p * -1 }
     | primary
   )
 
@@ -32,6 +32,6 @@ trait Parsers extends RegexParsers {
   def constant = """\d+""".r         ^^ { _.toInt }
 
   def sumAction(result: ~[Polynomial, List[~[String, Polynomial]]]) = result match {
-    case p ~ rest => rest.map(_ match { case "+" ~ t => t; case "-" ~ t => NEG_ONE * t }).foldLeft(p)(_ + _)
+    case p ~ rest => rest.map(_ match { case "+" ~ t => t; case "-" ~ t => t * -1 }).foldLeft(p)(_ + _)
   }
 }
