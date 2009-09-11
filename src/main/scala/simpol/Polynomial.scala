@@ -19,11 +19,17 @@ case class Polynomial(terms: Set[Term]) {
     px
   }
 
-  def *(that: Polynomial): Polynomial = if (isZero || that.isZero) Polynomial(0) else {
-    var ts = Set[Term]()
-    for (a <- terms; b <- that.terms)
-      ts += a * b
-    Polynomial(ts)
+  def *(that: Polynomial): Polynomial = {
+    val ZERO = Polynomial(0)
+    this match {
+      case ZERO => ZERO
+      case _             => {
+        var ts = Set[Term]()
+        for (a <- terms; b <- that.terms)
+          ts += a * b
+        Polynomial(ts)
+      }
+    }
   }
 
   def simplify = {
@@ -39,8 +45,6 @@ case class Polynomial(terms: Set[Term]) {
     case 0 => 0.toString
     case _ => terms.map(_.toString).mkString("+")
   }
-
-  private def isZero = terms.size == 1 && terms.elements.next == Term(0)
 
   private def +(term: Term): Polynomial = {
     if (terms.filter(_.factors == term.factors).isEmpty)
