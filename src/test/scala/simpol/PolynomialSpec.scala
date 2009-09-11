@@ -30,12 +30,4 @@ object PolynomialSpec extends Specification {
     "simplify correctly" in { (Polynomial(0) + Polynomial(0)).simplify mustEqual Polynomial(0).simplify }
     "print correctly" in { Polynomial(Set(t1, t3)).toString mustEqual "3*(x^1)*(y^2)+9*(x^2)*(z^3)" }
   }
-
-  "terms" should {
-    "multiply correctly" in { t1 * t2 mustEqual Term(15, Map('x -> 2, 'y -> 4)) }
-    "multiply correctly" in { t1 * t3 mustEqual Term(27, Map('x -> 3, 'y -> 2, 'z -> 3)) }
-    "add correctly" in { t1 + t2 mustEqual Term(8, Map('x -> 1, 'y -> 2)) }
-    "simplify correctly" in { Term(0, Map('x -> 1)).simplify mustEqual Term(0) }
-    "simplify correctly" in { Term(1, Map('x -> 0, 'y -> 1)).simplify mustEqual Term(1, Map('y -> 1)) }
-  }
 }
