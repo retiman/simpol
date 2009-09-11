@@ -31,8 +31,11 @@ trait Parsers extends RegexParsers {
   def variable = """[a-z]""".r       ^^ { Symbol(_) }
   def constant = """\d+""".r         ^^ { _.toInt }
 
-  def sumAction(result: ~[String, Polynomial]) = result match {
-    case "+" ~ p => p
-    case "-" ~ p => p * -1
+  def sumAction(result: Any): Polynomial = {
+    def coerce(result: Any) = result match { case p: Polynomial => p }
+    result match {
+      case "+" ~ p => coerce(p)
+      case "-" ~ p => coerce(p) * -1
+    }
   }
 }
