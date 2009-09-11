@@ -3,9 +3,8 @@ package simpol
 import Polynomial._
 
 object Term {
-  def apply(c: Int) = new Term(c, Map())
-  def apply(c: Int, factor: Pair[Symbol, Int]) = new Term(c, Map(factor))
-  def apply(factor: Pair[Symbol, Int]) = new Term(1, Map(factor))
+  def apply(c: Int, factors: Pair[Symbol, Int]*): Term = new Term(c, Map() ++ factors)
+  def apply(factors: Pair[Symbol, Int]*): Term = new Term(1, Map() ++ factors)
 }
 
 case class Term(c: Int, factors: Map[Symbol, Int]) {
