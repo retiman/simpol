@@ -4,19 +4,24 @@ import Polynomial._
 import Term._
 
 object Polynomial {
-  val ONE = Polynomial(Set(Term(1)))
-  val NEG_ONE = Polynomial(Set(Term(-1)))
-  val ZERO = Polynomial(Set())
+  val ONE = Polynomial(1)
+  val NEG_ONE = Polynomial(-1)
+  val ZERO = Polynomial(0)
+
+  def apply(c: Int) = new Polynomial(Set(Term(c)))
+  def apply(factor: Pair[Symbol, Int]) = new Polynomial(Set(Term(factor)))
 }
 
 case class Polynomial(terms: Set[Term]) {
+  assert(terms.size > 0)
+
   def +(that: Polynomial): Polynomial = {
     var px = this
     that.terms.foreach { term => px = px + term }
     px
   }
 
-  def *(that: Polynomial): Polynomial = if (isZero || that.isZero) Polynomial(Set()) else {
+  def *(that: Polynomial): Polynomial = if (isZero || that.isZero) Polynomial(0) else {
     var ts = Set[Term]()
     for (a <- terms; b <- that.terms)
       ts += a * b
@@ -24,8 +29,12 @@ case class Polynomial(terms: Set[Term]) {
   }
 
   def simplify = {
-    val px = Polynomial(Set()) + Polynomial(terms.map(_.simplify))
-    Polynomial(px.terms.filter(!_.isZero).map(_.simplify))
+    val px = Polynomial(0) + Polynomial(terms.map(_.simplify))
+    val ts = px.terms.filter(!_.isZero)
+    ts.size match {
+      case 0 => Polynomial(0)
+      case _ => Polynomial(ts.map(_.simplify))
+    }
   }
 
   override def toString = terms.size match {

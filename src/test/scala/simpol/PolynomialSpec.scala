@@ -20,14 +20,14 @@ object PolynomialSpec extends Specification {
   val p2 = Polynomial(Set(t2, t4))
 
   "polynomials" should {
-    "multiply correctly" in { Polynomial(Set()) * p1 mustEqual Polynomial(Set()) }
+    "multiply correctly" in { Polynomial(0) * p1 mustEqual Polynomial(0) }
     "multiply correctly" in { p1 * p2 mustEqual Polynomial(Set(t1 * t2, t1 * t4, t3 * t2, t3 * t4)) }
     "multiply correctly" in { Polynomial(Set(t6)) * Polynomial(Set(t1, t2)) mustEqual Polynomial(Set(t7, t8)) }
-    "add correctly" in { Polynomial(Set()) + p1 mustEqual p1 }
+    "add correctly" in { (Polynomial(0) + p1).simplify mustEqual p1 }
     "add correctly" in { p1 + p2 mustEqual Polynomial(Set(t5, t3, t4)) }
     "simplify correctly" in { Polynomial(Set(t1, t2)).simplify mustEqual Polynomial(Set(t5)) }
-    "simplify correctly" in { Polynomial(Set(Term(0))).simplify mustEqual Polynomial(Set(Term(0, Map('x -> 1)))).simplify }
-    "simplify correctly" in { (ZERO + ZERO).simplify mustEqual ZERO }
+    "simplify correctly" in { Polynomial(0) mustEqual Polynomial(Set(Term(0, Map('x -> 1)))).simplify }
+    "simplify correctly" in { (ZERO + ZERO).simplify mustEqual ZERO.simplify }
     "print correctly" in { Polynomial(Set(t1, t3)).toString mustEqual "3*(x^1)*(y^2)+9*(x^2)*(z^3)" }
   }
 
