@@ -2,6 +2,7 @@ package simpol
 
 import scala.util.parsing.combinator.RegexParsers
 import Polynomial._
+import Term._
 
 trait Parsers extends RegexParsers {
   def sum: Parser[Polynomial] = (
@@ -22,7 +23,7 @@ trait Parsers extends RegexParsers {
   def primary: Parser[Polynomial] = (
       variable ~ "^" ~ constant      ^^ { case v ~ "^" ~ e => Polynomial(Set(Term(1, Map(v -> e)))) }
     | variable                       ^^ { case v => Polynomial(Set(Term(1, Map(v -> 1)))) }
-    | constant                       ^^ { case c => Polynomial(Set(Term(c, Map()))) }
+    | constant                       ^^ { case c => Polynomial(Set(Term(c))) }
     | "(" ~> sum ~ ")^" ~ constant   ^^ { case s ~ ")^" ~ c => List.make(c, s).reduceLeft(_ * _) }
     | "(" ~> sum <~ ")"              ^^ { case s => s }
   )

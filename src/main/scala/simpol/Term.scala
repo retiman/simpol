@@ -2,7 +2,12 @@ package simpol
 
 import Polynomial._
 
-case class Term(c: Int, factors: Map[Variable, Exponent]) {
+object Term {
+  def apply(c: Int) = new Term(c, Map())
+  def apply(c: Int, factor: Pair[Symbol, Int]) = new Term(c, Map(factor))
+}
+
+case class Term(c: Int, factors: Map[Symbol, Int]) {
   def +(that: Term) = Term(c + that.c, factors)
 
   def *(that: Term) = {
@@ -17,7 +22,7 @@ case class Term(c: Int, factors: Map[Variable, Exponent]) {
   def isZero = c == 0
 
   def simplify = c match {
-    case 0 => Term(0, Map())
+    case 0 => Term(0)
     case _ => Term(c, factors.filter(_._2 != 0))
   }
 

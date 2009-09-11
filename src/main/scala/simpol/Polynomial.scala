@@ -1,12 +1,11 @@
 package simpol
 
 import Polynomial._
+import Term._
 
 object Polynomial {
-  type Variable = Symbol
-  type Exponent = Int
-  val ONE = Polynomial(Set(Term(1, Map())))
-  val NEG_ONE = Polynomial(Set(Term(-1, Map())))
+  val ONE = Polynomial(Set(Term(1)))
+  val NEG_ONE = Polynomial(Set(Term(-1)))
   val ZERO = Polynomial(Set())
 }
 
