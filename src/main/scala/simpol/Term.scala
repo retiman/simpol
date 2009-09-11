@@ -19,8 +19,6 @@ case class Term(c: Int, factors: Map[Symbol, Int]) {
     Term(c * that.c, fs)
   }
 
-  def isZero = c == 0
-
   def simplify = c match {
     case 0 => Term(0)
     case _ => Term(c, factors.filter(_._2 != 0))

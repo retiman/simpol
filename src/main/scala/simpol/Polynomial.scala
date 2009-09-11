@@ -5,7 +5,6 @@ import Term._
 
 object Polynomial {
   implicit def intWrapper(c: Int) = Polynomial(c)
-
   def apply(c: Int) = new Polynomial(Set(Term(c)))
   def apply(factor: Pair[Symbol, Int]) = new Polynomial(Set(Term(factor)))
   def apply(terms: Term*) = new Polynomial(Set() ++ terms)
@@ -29,7 +28,7 @@ case class Polynomial(terms: Set[Term]) {
 
   def simplify = {
     val px = Polynomial(0) + Polynomial(terms.map(_.simplify))
-    val ts = px.terms.filter(!_.isZero)
+    val ts = px.terms.filter(_ != Term(0))
     ts.size match {
       case 0 => Polynomial(0)
       case _ => Polynomial(ts.map(_.simplify))
