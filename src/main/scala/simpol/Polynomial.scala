@@ -41,7 +41,7 @@ case class Polynomial(terms: Set[Term]) {
     case _ => terms.map(_.toString).mkString("+")
   }
 
-  private def isZero = terms.isEmpty || (terms.size == 1 && terms.elements.next.isZero)
+  private def isZero = terms.size == 1 && terms.elements.next.isZero
 
   private def +(term: Term): Polynomial = {
     if (terms.filter(_.factors == term.factors).isEmpty)
