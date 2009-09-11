@@ -8,6 +8,7 @@ object Polynomial {
 
   def apply(c: Int) = new Polynomial(Set(Term(c)))
   def apply(factor: Pair[Symbol, Int]) = new Polynomial(Set(Term(factor)))
+  def apply(terms: Term*) = new Polynomial(Set() ++ terms)
 }
 
 case class Polynomial(terms: Set[Term]) {
