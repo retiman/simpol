@@ -16,16 +16,16 @@ trait Parsers extends RegexParsers {
   )
 
   def unary: Parser[Polynomial] = (
-      "_" ~> primary                 ^^ { case p => p * -1 }
+      "_" ~> primary                 ^^ { _ * -1 }
     | primary
   )
 
   def primary: Parser[Polynomial] = (
-      variable ~ "^" ~ constant      ^^ { case v ~ "^" ~ e => Polynomial(Set(Term(1, Map(v -> e)))) }
-    | variable                       ^^ { case v => Polynomial(Set(Term(1, Map(v -> 1)))) }
-    | constant                       ^^ { case c => Polynomial(Set(Term(c))) }
+      variable ~ "^" ~ constant      ^^ { case v ~ "^" ~ e => Polynomial(v -> e) }
+    | variable                       ^^ { case v => Polynomial(v -> 1) }
+    | constant                       ^^ { Polynomial(_) }
     | "(" ~> sum ~ ")^" ~ constant   ^^ { case s ~ ")^" ~ c => List.make(c, s).reduceLeft(_ * _) }
-    | "(" ~> sum <~ ")"              ^^ { case s => s }
+    | "(" ~> sum <~ ")"
   )
 
   def variable = """[a-z]""".r       ^^ { Symbol(_) }
