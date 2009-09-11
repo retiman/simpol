@@ -2,7 +2,6 @@ package simpol
 
 import scala.util.parsing.combinator.RegexParsers
 import Polynomial._
-import Term._
 
 trait Parsers extends RegexParsers {
   def sum: Parser[Polynomial] = (
