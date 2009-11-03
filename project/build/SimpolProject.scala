@@ -12,6 +12,6 @@ class SimpolProject(info: ProjectInfo) extends DefaultProject(info) {
   override def packageOptions      = MainClass("simpol.Main") ::
                                      super.packageOptions.toList
 
-  val junit                        = "junit" % "junit" % "4.4" % "test"
-  val specs                        = "specs" % "specs" % "1.4.1" % "test"
+  val junit = "junit"     % "junit" % "4.4"   % "test"
+  val specs = "org.specs" % "specs" % "1.4.1" % "test"
 }
