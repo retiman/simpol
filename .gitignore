@@ -1,3 +1,4 @@
-build
-lib_managed
+project/*/target
 project/boot
+project/lib_managed
+target
