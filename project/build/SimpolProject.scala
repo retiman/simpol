@@ -4,7 +4,6 @@ class SimpolProject(info: ProjectInfo) extends DefaultProject(info) {
   // For other configuration options, see
   // http://code.google.com/p/simple-build-tool/wiki/BuildConfiguration
   override def artifactID            = "simpol"
-  override def outputPath            = "project" / "target"
   override def dependencyPath        = "project" / "lib"
   override def managedDependencyPath = "project" / "lib_managed"
   override def mainScalaSourcePath   = "src"
