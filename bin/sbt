@@ -1,2 +1,6 @@
 #!/bin/bash
+if [ -n $SBT_HOME ]; then
+  SBT_HOME="`dirname $0`/../lib"
+  echo "Using $SBT_HOME"
+fi
 java -Xmx512M -jar $SBT_HOME/sbt-launcher.jar "$@"
