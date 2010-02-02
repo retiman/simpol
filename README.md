@@ -1,7 +1,9 @@
 Simpol
 ======
 
-Simpol is a very simple polynomial expression simplifier written in Scala (meaning it takes a polynomial and represents it as a sum of products).  Powers will be expanded, so it may be the case that the "simplified" expression is more complicated.
+Simpol is a very simple polynomial expression simplifier written in Scala (meaning it takes a polynomial and represents it as a sum of products).  This library is not intended for use in any kind of production quality software; it's here only to serve as an example.
+
+Powers will be expanded, so it may be the case that the "simplified" expression is more complicated.
 
 Building
 --------
@@ -16,6 +18,14 @@ Usage
 After building, run this command, replacing EXPRESSION with a polynomial (in quotes):
 
     bin/simpol EXPRESSION
+
+Examples
+--------
+
+    bin/simpol '(x+y+z)^4'
+    Simplifying (x+y+z)^4:
+      1*(y^4)+3*(y^2)*(x^2)+9*(y^2)*(z^1)*(x^1)+3*(z^3)*(x^1)+4*(z^3)*(y^1)+7*(z^2)*(y^1)*(x^1)+4*(z^2)*(y^2)+8*(z^1)*(x^2)*(y^1)+4*(z^1)*(y^3)+1*(z^4)+5*(x^2)*(z^2)+3*(x^3)*(z^1)+3*(x^1)*(y^3)+3*(x^3)*(y^1)+1*(x^4)
+
 
 Restrictions
 ------------
