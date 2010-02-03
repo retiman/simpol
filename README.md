@@ -2,6 +2,9 @@ Simpol
 ======
 Simpol is a very simple polynomial expression simplifier written in Scala (meaning it takes a polynomial and represents it as a sum of products).  This library is not intended for use in any kind of production quality software; it's here only to serve as an example.
 
+See version 1.0 for building with Maven 2.2.1.
+See version 1.1 for building with SBT 0.5.6.
+
 Powers will be expanded, so it may be the case that the "simplified" expression is more complicated.
 
 Building
