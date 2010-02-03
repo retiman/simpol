@@ -1,10 +1,7 @@
 package simpol
 
-import org.specs.runner.JUnit4
 import org.specs.Specification
 import Polynomial._
-
-class PolynomialSpecTest extends JUnit4(PolynomialSpec)
 
 object PolynomialSpec extends Specification {
   "polynomial multiplication" should {

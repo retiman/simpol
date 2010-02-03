@@ -18,6 +18,5 @@ class SimpolProject(info: ProjectInfo) extends DefaultProject(info) {
                                        "http://scala-tools.org/repo-releases"
   val lousycoderRepository           = "LousyCoder Maven Repository" at
                                        "http://maven.lousycoder.com"
-  val junit = "junit"     % "junit" % "4.4"   % "test"
   val specs = "org.specs" % "specs" % "1.4.3" % "test"
 }
