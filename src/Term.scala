@@ -3,6 +3,7 @@ package simpol
 import Polynomial._
 
 object Term {
+  implicit def intWrapper(c: Int) = Term(c)
   def apply(c: Int, factors: Pair[Symbol, Int]*): Term = new Term(c, Map() ++ factors)
   def apply(factors: Pair[Symbol, Int]*): Term = new Term(1, Map() ++ factors)
 }
