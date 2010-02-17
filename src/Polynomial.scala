@@ -22,7 +22,7 @@ case class Polynomial(terms: Set[Term]) {
   def *(that: Polynomial): Polynomial = {
     val ZERO = Polynomial(0)
     this match {
-      case ZERO => ZERO
+      case ZERO => 0
       case _    => {
         var ts = Set[Term]()
         for (a <- terms; b <- that.terms)
