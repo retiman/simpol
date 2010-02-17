@@ -4,7 +4,8 @@ import Polynomial._
 
 object Term {
   implicit def intWrapper(c: Int) = Term(c)
-  def apply(c: Int, factors: Pair[Symbol, Int]*): Term = new Term(c, Map() ++ factors)
+  def apply(c: Int, factors: Pair[Symbol, Int]*): Term =
+      new Term(c, Map() ++ factors)
   def apply(factors: Pair[Symbol, Int]*): Term = new Term(1, Map() ++ factors)
 }
 
@@ -31,13 +32,16 @@ case class Term(c: Int, factors: Map[Symbol, Int]) {
   }
 
   override def equals(that: Any) = that match {
-    case that: Term => (c == 0 && that.c == 0) || (c == that.c && factors == that.factors)
-    case _          => false
+    case that: Term =>
+      (c == 0 && that.c == 0) || (c == that.c && factors == that.factors)
+    case _ =>
+      false
   }
 
   override def toString = {
     implicit def pairWrapper(factor: Pair[Symbol, Int]) = new {
-      def format = "(" + factor._1.toString.replace("'", "") + "^" + factor._2 + ")"
+      def format =
+          "(" + factor._1.toString.replace("'", "") + "^" + factor._2 + ")"
     }
     factors.size match {
       case 0 => c.toString
