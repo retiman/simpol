@@ -14,7 +14,7 @@ case class Term(c: Int, factors: Map[Symbol, Int]) {
 
   def *(that: Term) = {
     var fs = factors
-    (factors.keySet ++ that.factors.keySet).foreach { name =>
+    factors.keySet ++ that.factors.keySet foreach { name =>
       val e = factors.getOrElse(name, 0) + that.factors.getOrElse(name, 0)
       fs += name -> e
     }
