@@ -25,16 +25,14 @@ case class Term(c: Int, factors: Map[Symbol, Int]) {
     case _ => Term(c, factors.filter(_._2 != 0))
   }
 
-  def canEqual(that: Any) = that.isInstanceOf[Term]
-
   override def hashCode = c match {
     case 0 => 0.hashCode
     case _ => super.hashCode
   }
 
   override def equals(that: Any) = that match {
-    case that: Term if that canEqual this => (c == 0 && that.c == 0) || (c == that.c && factors == that.factors)
-    case _                                => false
+    case that: Term => (c == 0 && that.c == 0) || (c == that.c && factors == that.factors)
+    case _          => false
   }
 
   override def toString = {
