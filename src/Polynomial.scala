@@ -19,16 +19,13 @@ case class Polynomial(terms: Set[Term]) {
     px
   }
 
-  def *(that: Polynomial): Polynomial = {
-    val ZERO = Polynomial(0)
-    this match {
-      case ZERO => 0
-      case _    => {
-        var ts = Set[Term]()
-        for (a <- terms; b <- that.terms)
-          ts += a * b
-        Polynomial(ts)
-      }
+  def *(that: Polynomial): Polynomial = terms.size match {
+    case 0 => 0
+    case _ => {
+      var ts = Set[Term]()
+      for (a <- terms; b <- that.terms)
+        ts += a * b
+      Polynomial(ts)
     }
   }
 
