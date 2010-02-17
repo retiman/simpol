@@ -32,11 +32,11 @@ case class Polynomial(terms: Set[Term]) {
     }
   }
 
-  def simplify = {
+  def simplify: Polynomial = {
     val px = Polynomial(terms.map(_.simplify))
     val ts = px.terms.filter(_ != Term(0))
     ts.size match {
-      case 0 => Polynomial(0)
+      case 0 => 0
       case _ => Polynomial(ts.map(_.simplify))
     }
   }
