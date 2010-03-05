@@ -1,15 +1,18 @@
 Simpol
 ======
-Simpol is a very simple polynomial expression simplifier written in Scala (meaning it takes a polynomial and represents it as a sum of products).  This library is not intended for use in any kind of production quality software; it's here only to serve as an example.
+Simpol is a very simple polynomial expression simplifier written in Scala
+(meaning it takes a polynomial and represents it as a sum of products).  This
+library is not intended for use in any kind of production quality software; it
+is here only to serve as an example.
 
-See version 1.0 for building with Maven 2.2.1.
-See version 1.1 for building with SBT 0.5.6.
-
-Powers will be expanded, so it may be the case that the "simplified" expression is more complicated.
+Powers will be expanded, so it may be the case that the "simplified" expression
+is more complicated.
 
 Building
 --------
-Simpol uses SBT (http://code.google.com/p/simple-build-tool/) to build.  Download a copy or just use the SBT launcher bundled in the checkout.  These commands will package Simpol:
+Simpol uses SBT (http://code.google.com/p/simple-build-tool/) to build.
+Download a copy or just use the SBT launcher bundled in the checkout.  These
+commands will package Simpol:
 
     bin/sbt
     update
@@ -17,7 +20,8 @@ Simpol uses SBT (http://code.google.com/p/simple-build-tool/) to build.  Downloa
 
 Usage
 -----
-After building, run this command, replacing EXPRESSION with a polynomial (in quotes):
+After building, run this command, replacing EXPRESSION with a polynomial (in
+quotes):
 
     bin/simpol EXPRESSION
 
@@ -44,7 +48,9 @@ Restrictions
 
 Grammar
 -------
-Using the Scala parser combinators makes parsing super easy.  Im too lazy to produce a grammar for valid polynomial expressions, but heres the parser class, which looks almost like BNF:
+Using the Scala parser combinators makes parsing super easy.  Im too lazy to
+produce a grammar for valid polynomial expressions, but heres the parser class,
+which looks almost like BNF:
 
     trait Parsers extends RegexParsers {
       def sum: Parser[Polynomial] = (
