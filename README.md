@@ -14,21 +14,21 @@ Simpol uses SBT (http://code.google.com/p/simple-build-tool/) to build.
 Download a copy or just use the SBT launcher bundled in the checkout.  These
 commands will package Simpol:
 
-    bin/sbt
+    ./build.sh
     update
     package
 
 Usage
 -----
-After building, run this command, replacing EXPRESSION with a polynomial (in
-quotes):
+After building, run this command in SBT, replacing EXPRESSION with a polynomial
+(in quotes):
 
-    bin/simpol EXPRESSION
+    run "EXPRESSION"
 
 Examples
 --------
 
-    bin/simpol '(x+y+z)^4'
+    run "(x+y+z)^4"
     Simplifying (x+y+z)^4:
       1*(y^4)+3*(y^2)*(x^2)+9*(y^2)*(z^1)*(x^1)+3*(z^3)*(x^1)+4*(z^3)*(y^1)+7*(z^2)*(y^1)*(x^1)+4*(z^2)*(y^2)+8*(z^1)*(x^2)*(y^1)+4*(z^1)*(y^3)+1*(z^4)+5*(x^2)*(z^2)+3*(x^3)*(z^1)+3*(x^1)*(y^3)+3*(x^3)*(y^1)+1*(x^4)
 
