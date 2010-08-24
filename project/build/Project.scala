@@ -1,8 +1,6 @@
 import sbt._
 
-class SimpolProject(info: ProjectInfo) extends DefaultProject(info) {
-  // For other configuration options, see
-  // http://code.google.com/p/simple-build-tool/wiki/BuildConfiguration
+class Project(info: ProjectInfo) extends DefaultProject(info) {
   override def artifactID            = "simpol"
   override def dependencyPath        = "project" / "lib"
   override def managedDependencyPath = "project" / "lib_managed"
@@ -18,6 +16,6 @@ class SimpolProject(info: ProjectInfo) extends DefaultProject(info) {
                                        "http://scala-tools.org/repo-releases"
   val lousycoderRepository           = "LousyCoder Maven Repository" at
                                        "http://maven.lousycoder.com"
-  val junit = "junit"     % "junit" % "4.4"   % "test"
-  val specs = "org.specs" % "specs" % "1.4.3" % "test"
+
+  val specs = "org.specs" %% "specs" % "1.6.5" % "test"
 }
