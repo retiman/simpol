@@ -1,2 +1,2 @@
 #!/bin/bash
-scala -cp target/classes simpol.Main $*
+scala -cp target/scala_2.8.0/classes simpol.Main $*
