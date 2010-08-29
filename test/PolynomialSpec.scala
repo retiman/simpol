@@ -5,7 +5,7 @@ import Polynomial._
 
 object PolynomialSpec extends Specification {
   "polynomial multiplication" should {
-    "multiply zero polynomials correctly" in { 
+    "multiply zero polynomials correctly" in {
       Polynomial(0) * Polynomial(1) mustEqual Polynomial(0)
       Polynomial(1) * Polynomial(0) mustEqual Polynomial(0)
     }
