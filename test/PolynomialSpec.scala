@@ -58,7 +58,12 @@ object PolynomialSpec extends Specification {
 
   "polynomial printing" should {
     "display this polynomial correctly" in {
-      Polynomial(Term(3, 'x -> 1, 'y -> 2), Term(9, 'x -> 2, 'z -> 3)).toString mustEqual "3*(x^1)*(y^2)+9*(x^2)*(z^3)"
+      val expected = Polynomial(
+        Term(3, 'x -> 1, 'y -> 2),
+        Term(9, 'x -> 2, 'z -> 3)
+      ).toString
+      val result = "3*(x^1)*(y^2)+9*(x^2)*(z^3)"
+      expected mustEqual result
     }
   }
 }
