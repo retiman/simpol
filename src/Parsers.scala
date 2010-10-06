@@ -23,7 +23,7 @@ trait Parsers extends RegexParsers {
       variable ~ "^" ~ constant      ^^ { case v ~ "^" ~ e  => Polynomial(v -> e) }
     | variable                       ^^ { case v => Polynomial(v -> 1) }
     | constant                       ^^ { case c => Polynomial(c) }
-    | "(" ~> sum ~ ")^" ~ constant   ^^ { case s ~ ")^" ~ c => List.make(c, s).reduceLeft(_ * _) }
+    | "(" ~> sum ~ ")^" ~ constant   ^^ { case s ~ ")^" ~ c => List.fill(c)(s).reduceLeft(_ * _) }
     | "(" ~> sum <~ ")"
   )
 
