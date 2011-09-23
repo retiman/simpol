@@ -1,9 +1,9 @@
 package simpol
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import Term._
 
-object TermSpec extends Specification {
+class TermSpec extends SpecificationWithJUnit {
   "term multiplication" should {
     "calculate 3*x*y^2 * 5*x*y^2 correctly" in {
       val expected = Term(3, 'x -> 1, 'y -> 2) * Term(5, 'x -> 1, 'y -> 2)

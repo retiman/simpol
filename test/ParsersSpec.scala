@@ -1,9 +1,9 @@
 package simpol
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import Polynomial._
 
-object ParsersSpec extends Specification {
+class ParsersSpec extends SpecificationWithJUnit {
   val p = new Parsers {}
   import p._
 

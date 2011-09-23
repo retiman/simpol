@@ -1,9 +1,9 @@
 package simpol
 
-import org.specs.Specification
+import org.specs.SpecificationWithJUnit
 import Polynomial._
 
-object PolynomialSpec extends Specification {
+class PolynomialSpec extends SpecificationWithJUnit {
   "polynomial multiplication" should {
     "multiply zero polynomials correctly" in {
       Polynomial(0) * Polynomial(1) mustEqual Polynomial(0)
