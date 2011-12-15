@@ -8,16 +8,6 @@ quality software; it is here only to serve as an example.
 Powers will be expanded, so it may be the case that the "simplified" expression
 is more complicated.
 
-BUILDING
-========
-Use SBT to build; get it from the website here:
-
-    http://code.google.com/p/simple-build-tool/
-
-Then, create a script that launches sbt.  Here's an example:
-
-    http://github.com/retiman/homekeeper/blob/master/bin/sbt
-
 USAGE
 =====
 After building, run this command in SBT, replacing EXPRESSION with a polynomial
